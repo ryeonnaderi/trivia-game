@@ -95,48 +95,62 @@ $(document).ready(function () {
                 answer = questions.answer;
 
                 $("#true").on("click", function ()) {
-                            trueBtn = true;
-                            if (trueBtn === answer) {
-                                score++;
-                            } else if (trueBtn !== answer) {
-                                score = score;
+                    trueBtn = true;
+                    if (trueBtn === answer) {
+                        score++;
+                    } else if (trueBtn !== answer) {
+                        score = score;
 
-                            }
-                        }
+                    }
+                }
 
-                        $("#false").on("click", function ()) {
-                                falseBtn = false;
-                            }
-
-                            if (falseBtn === answer)
-                            {
-
-                            }
+                $("#false").on("click", function ()) {
+                    falseBtn = false;
 
 
-                        };
+                    if (falseBtn === answer) 
+                    {
+                        score++;
+                    } 
+                    else if (falseBtn !==answer)
+                    {
+                        score = score;
+                    }
+                }
+
+            };
+            answer();
+
+
+            function finished()
+            {
+                if(questions.length ==0)
+                $("#questions").empty();
+                $(".box").text("score:" + score);
+                if(timer === 0)
+                {
+                alert("time is up");
+                }
+            }
+        
+
+            finsihed();
 
 
 
 
 
+            // when time reaches zero then switch to next question
+
+            // make sure that the answer and the question match
+            // user input on the button html button .val method radio buttons 
+            // if  answer === correct answer then 
+            // if the answer is correct then increase by 1 and show gif 
+            // if they get it wrong then the correct answer shows up and the score remains the same 
 
 
 
 
-
-
-                        // when time reaches zero then switch to next question
-
-                        // make sure that the answer and the question match
-                        // user input on the button html button .val method radio buttons 
-                        // if  answer === correct answer then 
-                        // if the answer is correct then increase by 1 and show gif 
-                        // if they get it wrong then the correct answer shows up and the score remains the same 
-
-
-
-
-                        // have a time limit for about 15 sec
-                        // if they get the answer right then their score goes up by 1 and shows the gif of the correct answer 
-                        // but if they get it wrong then their score  stays as zero and shows the correct answer and alerts better luck next time
+            // have a time limit for about 15 sec
+            // if they get the answer right then their score goes up by 1 and shows the gif of the correct answer 
+            // but if they get it wrong then their score  stays as zero and shows the correct answer and alerts better luck next time
