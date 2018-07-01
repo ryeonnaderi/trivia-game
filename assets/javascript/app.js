@@ -1,60 +1,142 @@
+// variables
 var score = 0;
 
-// make a for loop that goes through the different questions
-// var question = [" who is batman."," what was the first successful cloned animal."," what is the official currency of china"," what does the phrase cul -de - sac literally translates to","who created the super heroes and super villains"," before creating hot mail, the 2 founders worked at what company","Which famous math equation remains unsolved?"," when was snapchat made"," where was chocolate made"," where were noodles invented"]
-var question = [{
-        question: "Who is batman",
-        answers: {
-            a: "bruce wayne",
-            b: "Bruce banner",
-            c: "the flash"
-        },
-        correctAnswer: "a"
-    },
+var trueBtn = $("#true");
+var falseBtn = $("#false");
+// questions
+var questions = [
+
     {
-        question: "What was the first cloned animal",
-        answers: {
-            a: "bear",
-            b: "pig",
-            c: "sheep"
-        },
-        correctAnswer: "c"
+        q: "the man in the lab coat is morty",
+        answers: false,
     },
+
     {
-        question: "what is the official currency of china",
-        answers: {
-            a: "yen",
-            b: "Renminbi",
-            c: "peso"
-        },
-        correctAnswer: "b"
-    } {
-        question: " what does the phrase cul -de - sac literally translates to",
-        answers: {
-            a: "bottom of the sack",
-            b: "last cookie",
-            c: "apple sucks"
-        },
-        correctAnswer: "a"
+        q: "the first successfully cloned animal was a sheep",
+        answers: true,
+    },
+
+    {
+        q: " the official currency of china is yen",
+        answers: false,
+    },
+
+    {
+        q: "jerry and beth got a divorce in season 1",
+        answers: false,
+    },
+
+    {
+        q: "jerry was very loved in rick and Morty",
+        answers: false,
+    },
+
+    {
+        q: "Evil morty was captured",
+        answers: false,
     }
-
 ];
-for (var i = 0; i<question.length; i++)
-{
-     
-     
 
-}
-// when time reaches zero then switch to next question
-// make sure that the answer and the question match
-// user input on the button html button .val method radio buttons 
-// if  answer === correct answer then 
-// if the answer is correct then increase by 1 and show gif 
-// if they get it wrong then the correct answer shows up and the score remains the same 
 
- 
+// holds the current question
+var currentquestion = [];
+// holds the answer
+var answer = "";
 
-console.log(question);
-// have a time limit for about 15 sec
-// if they get the answer right then their score goes up by 1 and shows the gif of the correct answer 
-// but if they get it wrong then their score  stays as zero and shows the correct answer and alerts better luck next time
+// timer
+var timer = 20;
+var timeStart = false;
+var timeInterval;
+
+$(document).ready(function () {
+
+            // game start function
+            function load() {
+                score = 0;
+                correctAnswer = 0;
+                inCorrectAnswer = 0;
+                $("#qeustion").empty();
+                timer = 20;
+                $("#timer").text("Time:" + timer + "second");
+            }
+
+        }; load();
+
+        $("gameStart").click(function gameStart() {
+                function begin() {
+                    clearInterval(timeInterval);
+                    timeInterval = setInterval(decrement, 1000);
+                };
+
+
+                function decreasing() {
+
+                    timer--;
+
+
+
+                    $("#timer").text("Time:" + timer + "second");
+
+
+                    if (timer === 0) {
+                        end();
+
+                        alert("time is up");
+                    }
+                };
+
+                function end() {
+                    clearInterval(timeInterval);
+                }
+
+                begin();
+                $("#questions").text(questions);
+
+                answer = questions.answer;
+
+                $("#true").on("click", function ()) {
+                            trueBtn = true;
+                            if (trueBtn === answer) {
+                                score++;
+                            } else if (trueBtn !== answer) {
+                                score = score;
+
+                            }
+                        }
+
+                        $("#false").on("click", function ()) {
+                                falseBtn = false;
+                            }
+
+                            if (falseBtn === answer)
+                            {
+
+                            }
+
+
+                        };
+
+
+
+
+
+
+
+
+
+
+
+                        // when time reaches zero then switch to next question
+
+                        // make sure that the answer and the question match
+                        // user input on the button html button .val method radio buttons 
+                        // if  answer === correct answer then 
+                        // if the answer is correct then increase by 1 and show gif 
+                        // if they get it wrong then the correct answer shows up and the score remains the same 
+
+
+
+
+                        // have a time limit for about 15 sec
+                        // if they get the answer right then their score goes up by 1 and shows the gif of the correct answer 
+                        // but if they get it wrong then their score  stays as zero and shows the correct answer and alerts better luck next time

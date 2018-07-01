@@ -15,32 +15,38 @@
 </head>
 
 <body>
-    <h1 class="header">
-        Random trivia questions
-    </h1>
     <div class="box">
-            <div class="questions">
-                    <p>1. Who is batman</p>
-                    <form class="options">
-                        <input class="option" type="radio" name="question1" value=4>bruce wayne<br>
-                        <input class="option" type="radio" name="question1" value=3>clark kent<br>
-                        <input class="option" type="radio" name="question1" value=2>bruce banner<br>
-                        <input class="option" type="radio" name="question1" value=1>the flash</br>
-                    </form>
-                </div>
+        <header>Random trivia questions</header>
+
+        <div id="timer">00:00</div>
+        <br/>
+        <div id="start">
+            <button type="button" class="btn btn-primary" onclick="gameStart()">Start!</button>
+        </div>
+        <br/>
+
+        <div id="true">
+            <button type="button" class="btn">True</button>
+        </div>
+        <br/>
+
+        <div id="false">
+            <button type="button" class="btn">False</button>
+        </div>
+
+
+
+        <div id="questions">
+            <h3></h3>
+        </div>
+
+
+        <div class="finished">
+
+        </div>
+
     </div>
-    <div class="box">
-            <div class="questions">
-                    <p>  what was the first successful cloned animal.</p>
-                    <form class="options">
-                        <input class="option" type="radio" name="question1" value=4>bruce wayne<br>
-                        <input class="option" type="radio" name="question1" value=3>clark kent<br>
-                        <input class="option" type="radio" name="question1" value=2>bruce banner<br>
-                        <input class="option" type="radio" name="question1" value=1>the flash</br>
-                    </form>
-                </div>
-    </div>
-       
+
 </body>
 
 </html>
