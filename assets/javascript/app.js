@@ -41,29 +41,20 @@ var currentAnswer = "";
 
 // timer
 var time = 20;
-var timerunning = false;
+var timeRunning = false;
 var timerInterval;
 
 
 // functions
-$(document).ready(function () {
-    function load() {
-        score = 0;
-        $("#questions").empty();
-        time = 20;
-        timerunning = true;
-        $("#time").text("time left:" + time + " seconds ");
-    };
-
-    load();
-
+ $(document).ready(function () {
     // gameStart
-    $("#gameStart").click(function start()) {
-        function begin() {
-            clearInterval(timerInterval);
-            timerInterval = setInterval(decrement, 1000);
-        };
-
+    $(".gameStart").click(function() {
+        
+        // clearInterval(timerInterval);
+        timerInterval = setInterval(decrement(), 1000);
+        // console.log(timerInterval);
+        timeRunning = true;
+        
         function decrement() {
             time--;
             $("#time").text("Time Remaining: " + time + " seconds");
@@ -74,17 +65,28 @@ $(document).ready(function () {
             };
         };
 
-        function end() {
-            clearInterval(timerInterval);
 
-        }
-        begin();
-
-
-        currentQuestion = questions[math.floor(math.random() * questions.length)];
+           currentQuestion = questions[Math.floor(Math.random() * questions.length)];
         $("#questions").text(currentQuestion.question)
         currentAnswer = currentQuestion.answer;
+    });
+
+    function load() {
+        score = 0;
+        $("#questions").empty();
+        time = 20;
+
+        $("#time").text("time left:" + time + " seconds ");
     };
+
+    load();
+
+    function end() {
+        clearInterval(timerInterval);
+
+    }
+
+
 
 
     function answerChoice() {
@@ -99,20 +101,21 @@ $(document).ready(function () {
             currentAnswer = currentQuestion.answer;
         });
 
+
+
+        $("#false").on("click", function () {
+
+            falseBtn = false;
+            if (falseBtn === currentAnswer) {
+                score++;
+
+            } else if (falseBtn !== currentAnswer) {
+                score = score;
+            }
+            $("#questions").text(currentQuestion.question);
+            currentAnswer = currentQuestion.answers;
+        });
     }
-
-    $("#false").on("click", function () {
-
-        falseBtn = false;
-        if (falseBtn === currentAnswer) {
-            score++;
-
-        } else if (falseBtn !== currentAnswer) {
-            score = score;
-        }
-        currentAnswer = currentQuestion.answers;
-    });
-
 
     answerChoice();
 
@@ -133,8 +136,8 @@ $(document).ready(function () {
     }
 
 
-});
 
+ });
 // when time reaches zero then switch to next question
 
 // make sure that the answer and the question match
