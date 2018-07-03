@@ -2,7 +2,9 @@
 var score = 0;
 var trueBtn = $("#true");
 var falseBtn = $("#false");
+
 // questions
+
 var questions = [
 
     {
@@ -35,93 +37,118 @@ var questions = [
         answers: false,
     }
 ];
-//  quetion that was picked
 var currentQuestion = [];
-var currentAnswer = "";
+
+
+
+// var questionIndex = 0;
+//  var questionInterval = setInterval(function()
+//  {
+//      questionIndex++;
+//      if(question>=questions.length)
+//      {
+//          clearInterval(questionInterval);
+//      }
+//  },1000);
+   
+
+
+//  quetion that was picked
+
 
 // timer
 var time = 20;
-var timeRunning = false;
+var timerunning = false;
 var timerInterval;
 
 
 // functions
- $(document).ready(function () {
+$(document).ready(function () {
+    function load() {
+        score = 0;
+        $("#questions").empty();
+        time = 20;
+        
+        $("#time").text("Time Remaining: " + time + " seconds");
+    };
+
+    load();
+    
+     currentQuestion = questions.splice()(Math.floor(Math.random()*questions.lenth),1)[0];
+    
+    //  $("#questions").text(questions.question); 
+     console.log("current question " + currentQuestion);
+    
+
+
     // gameStart
-    $(".gameStart").click(function() {
+    $("#gameStart").click(function start() {
+        function begin() {
         
-        // clearInterval(timerInterval);
-        timerInterval = setInterval(decrement(), 1000);
-        // console.log(timerInterval);
-        timeRunning = true;
-        
+            clearInterval(timerInterval);
+            timerInterval = setInterval(decrement, 1000);
+        };
+
         function decrement() {
             time--;
             $("#time").text("Time Remaining: " + time + " seconds");
 
-            if (time == 0) {
+            if (time === 0) {
                 end();
                 alert("time is up");
             };
         };
 
+        function end() {
+            clearInterval(timerInterval);
 
-           currentQuestion = questions[Math.floor(Math.random() * questions.length)];
-        $("#questions").text(currentQuestion.question)
-        currentAnswer = currentQuestion.answer;
+        };
+        begin();
+
+
+        
+        
+        
     });
 
-    function load() {
-        score = 0;
-        $("#questions").empty();
-        time = 20;
-
-        $("#time").text("time left:" + time + " seconds ");
-    };
-
-    load();
-
-    function end() {
-        clearInterval(timerInterval);
-
-    }
-
-
+    
 
 
     function answerChoice() {
         $("#true").on("click", function () {
-            trueBtn = true;
-            if (trueBtn === currentAnswer) {
+        
+            if (trueBtn === Answer) {
                 score++;
-            } else if (trueBtn !== currentAnswer) {
+                
+            } else {
                 score = score;
+            
             }
-            $("#questions").text(currentQuestion.question);
-            currentAnswer = currentQuestion.answer;
+            $("#questions").text(currentQuestions.question);
+            
         });
 
 
 
         $("#false").on("click", function () {
 
-            falseBtn = false;
-            if (falseBtn === currentAnswer) {
+            
+            if (falseBtn === Answer) {
                 score++;
-
-            } else if (falseBtn !== currentAnswer) {
+                
+            } else  {
                 score = score;
             }
             $("#questions").text(currentQuestion.question);
-            currentAnswer = currentQuestion.answers;
+            
         });
-    }
+    };
 
     answerChoice();
 
 
     function finished() {
-        if (question.length === 0) {
+        if (questions.length === 0) {
             $("#questions").empty();
             $(".container").text("score:" + score);
         }
@@ -136,8 +163,8 @@ var timerInterval;
     }
 
 
+});
 
- });
 // when time reaches zero then switch to next question
 
 // make sure that the answer and the question match

@@ -11,14 +11,14 @@
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
         crossorigin="anonymous"></script>
-    <script src="assets/javascript/app.js"></script>
+    
 </head>
 
 <body>
     <div class="box">
         <header>Random trivia questions</header>
         <div id="gameStart">
-            <button type="button" class="btn btn-primary gameStart">Start!</button>
+            <button type="button" class="btn btn-primary">Start!</button>
         </div>
         <div class="container">
 
@@ -26,7 +26,10 @@
             <br/>
 
             <br/>
-
+            
+            <div  id="questions">
+                <h3></h3>
+            </div>
             <div id="true">
                 <button type="button" class="btn">True</button>
             </div>
@@ -36,9 +39,7 @@
                 <button type="button" class="btn">False</button>
             </div>
 
-            <div id="questions">
-                <h3></h3>
-            </div>
+            
 
 
             <div class="finished">
@@ -48,5 +49,5 @@
         </div>
     </div>
 </body>
-
+<script src="assets/javascript/app.js"></script>
 </html>
