@@ -38,6 +38,7 @@ var questions = [
     }
 ];
 var currentQuestion = [];
+var currentAnswer = "";
 
 
 
@@ -66,6 +67,7 @@ var timerInterval;
 $(document).ready(function () {
     function load() {
         score = 0;
+        
         $("#questions").empty();
         time = 20;
         
@@ -74,16 +76,20 @@ $(document).ready(function () {
 
     load();
     
-     currentQuestion = questions.splice()(Math.floor(Math.random()*questions.lenth),1)[0];
     
     //  $("#questions").text(questions.question); 
      console.log("current question " + currentQuestion);
     
-
+     function end() {
+        clearInterval(timerInterval);
+        $(".container").text("final: " + score);
+    };
 
     // gameStart
     $("#gameStart").click(function start() {
         function begin() {
+            generateQuestion();
+            timerunning = true;
         
             clearInterval(timerInterval);
             timerInterval = setInterval(decrement, 1000);
@@ -99,10 +105,7 @@ $(document).ready(function () {
             };
         };
 
-        function end() {
-            clearInterval(timerInterval);
-
-        };
+        
         begin();
 
 
@@ -110,6 +113,18 @@ $(document).ready(function () {
         
         
     });
+    function generateQuestion()
+    {
+        if(checkednotFinished())
+        {
+            var randomIndex = Math.floor(Math.random()*questions.length);
+            currentQuestion = questions.splice(randomIndex,1)[0];
+            $("#questions").text(currentQuestion.question);
+            currentAnswer =currentQuestion.answers;
+        }
+        
+        
+    };
 
     
 
@@ -117,14 +132,16 @@ $(document).ready(function () {
     function answerChoice() {
         $("#true").on("click", function () {
         
-            if (trueBtn === Answer) {
+            if (true === currentAnswer) {
                 score++;
+
                 
             } else {
                 score = score;
             
             }
-            $("#questions").text(currentQuestions.question);
+            $("#questions").text(currentQuestion.question);
+            generateQuestion();
             
         });
 
@@ -133,34 +150,41 @@ $(document).ready(function () {
         $("#false").on("click", function () {
 
             
-            if (falseBtn === Answer) {
+            if (false === currentAnswer) {
                 score++;
                 
             } else  {
                 score = score;
             }
             $("#questions").text(currentQuestion.question);
+            generateQuestion();
             
         });
+
     };
 
     answerChoice();
 
 
-    function finished() {
+    function checkednotFinished() {
         if (questions.length === 0) {
             $("#questions").empty();
             $(".container").text("score:" + score);
+            end();
+            return false;
         }
 
         if (time === 0) {
             alert("time is up");
+            end();
+            return false;
         }
 
-
-        end();
+        return true;
+        
 
     }
+
 
 
 });
